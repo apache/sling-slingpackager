@@ -1,0 +1,5 @@
+github:
+  description: A tool for working with Apache Sling content packages
+  labels:
+    - sling
+    - javascript
