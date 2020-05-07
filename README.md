@@ -1,4 +1,10 @@
-# Intro
+[<img src="https://sling.apache.org/res/logos/sling.png"/>](https://sling.apache.org)
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+
+# Apache Sling Packager
+
+This module is part of the [Apache Sling](https://sling.apache.org) project.
 
 `slingpackager` is a nodejs based command line tool alternative to the [Content Package Maven Plugin](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/vlt-mavenplugin.html) from Adobe or the
 [Content Package Maven Pluging](https://wcm.io/tooling/maven/plugins/wcmio-content-package-maven-plugin/) from
