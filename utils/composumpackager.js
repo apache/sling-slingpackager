@@ -60,7 +60,6 @@ const upload = (url, username, password, packagePath, install, maxRetry) => {
             logger.debug(JSON.stringify(json));
 
             if(install) {
-                logger.info('installing', json.path);
                 installPackage(url, username, password, json.path, maxRetry);
             }
         }
@@ -90,15 +89,7 @@ const deletePackage = (url, username, password, package, maxRetry) => {
 }
 
 const install = (url, username, password, package, maxRetry) => {
-    logger.log('Installing package', package, 'on', url);
-
-    let post = postJob({url, username, password, package, maxRetry}, 'install', (error, result) => {
-        if(error) {
-            logger.error('Unable to uninstall package', package);
-            logger.error(error);
-            process.exit(1);
-        } 
-    });
+    installPackage(url, username, password, package, maxRetry);
 }
 
 const uninstall = (url, username, password, package, maxRetry) => {
@@ -143,6 +134,18 @@ const download = (url, username, password, destination, package, maxRetry) => {
 
 const getName = () => {
     return 'Composum Package Manager';
+}
+
+function installPackage(url, username, password, package, maxRetry) {
+    logger.log('Installing package', package, 'on', url);
+
+    let post = postJob({url, username, password, package, maxRetry}, 'install', (error, result) => {
+        if(error) {
+            logger.error('Unable to uninstall package', package);
+            logger.error(error);
+            process.exit(1);
+        } 
+    });
 }
 
 function downloadPackage(data) {
