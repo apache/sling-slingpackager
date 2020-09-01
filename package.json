@@ -1,5 +1,5 @@
 {
-  "name": "@apachesling/slingpackager",
+  "name": "@apache-sling/slingpackager",
   "version": "0.0.5",
   "description": "A tool for working with Apache Sling content packages.",
   "main": "index.js",
@@ -19,6 +19,7 @@
   "dependencies": {
     "archiver": "^3.0.0",
     "request": "^2.88.0",
+    "user": "0.0.0",
     "verbosity": "^1.1.1",
     "xml2js": "^0.4.19",
     "xmlbuilder": "^13.0.2",
