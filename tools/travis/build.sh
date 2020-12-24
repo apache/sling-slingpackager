@@ -18,3 +18,39 @@ set -e
 #
 
 # Build script for Travis-CI.
+
+# Update this when creating a new release
+RELEASE_VERSION="0.0.5"
+
+PACK_NAME="slingpackager"
+SCRIPTDIR=$(cd $(dirname "$0") && pwd)
+ROOTDIR=$(cd $SCRIPTDIR/../.. && pwd)
+RELEASEDIR="$ROOTDIR/releases/$PACK_NAME"
+
+# Scan code
+mvn apache-rat:check
+
+echo "Code scan successful."
+
+# Make new release directory
+if [ -d "$RELEASEDIR" ] 
+then
+    rm -rf $RELEASEDIR
+fi
+mkdir -p $RELEASEDIR
+
+echo "Creating release."
+
+# Copy code to release directory
+cp -p -a $ROOTDIR/bin $RELEASEDIR
+cp -p -a $ROOTDIR/cmds $RELEASEDIR
+cp -p -a $ROOTDIR/utils $RELEASEDIR
+cp -p -a $ROOTDIR/test $RELEASEDIR
+cp package.json LICENSE NOTICE $RELEASEDIR
+
+cd $RELEASEDIR
+npm pack
+
+# Sign the release
+
+
