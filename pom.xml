@@ -21,9 +21,9 @@
   <packaging>pom</packaging>
 
   <parent>
-    <groupId>org.apache</groupId>
-    <artifactId>apache</artifactId>
-    <version>23</version>
+    <groupId>org.apache.sling</groupId>
+    <artifactId>sling</artifactId>
+    <version>6</version>
   </parent>
 
   <groupId>org.apache.sling</groupId>

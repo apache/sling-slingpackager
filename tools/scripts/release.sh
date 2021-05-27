@@ -1,3 +1,5 @@
+#!/bin/bash
+set -e
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -15,23 +17,14 @@
 # limitations under the License.
 #
 
-language: node_js
-node_js:
-- '8'
-- '10'
-- '11'
-- '12'
-- 'stable'
-cache: npm
-sudo: required
-services:
-- docker
-before_install:
-- cd $TRAVIS_BUILD_DIR
-install:
-- cd $TRAVIS_BUILD_DIR
-- "./tools/scripts/setup.sh"
-- cd $TRAVIS_BUILD_DIR
-script:
-- cd $TRAVIS_BUILD_DIR
-- "./tools/scripts/release.sh"
+. tools/scripts/setupenv.sh
+
+. $SCRIPTDIR/build.sh
+
+# Sign release
+# . $SCRIPTDIR/sign.sh
+
+# Publish release
+. $SCRIPTDIR/publish.sh
+
+
