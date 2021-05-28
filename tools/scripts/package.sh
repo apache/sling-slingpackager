@@ -16,10 +16,15 @@ set -e
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+. tools/scripts/setupenv.sh
 
-export SLING_JAR="org.apache.sling.starter-11.jar"
-export SLING_DOWNLOAD="https://downloads.apache.org/sling/$SLING_JAR"
-export PACK_NAME="slingpackager"
-export SCRIPTDIR=$(cd $(dirname "$0") && pwd)
-export ROOTDIR=$(cd $SCRIPTDIR/../.. && pwd)
-export RELEASEDIR="$ROOTDIR/target/$PACK_NAME"
+cd $RELEASEDIR
+
+# Create release package
+npm pack
+
+# For integration with current Sling Release Management which uses Maven
+# copy generated arifect to target folder
+cp $RELEASEDIR/*.tgz $ROOTDIR/target
+
+cd $ROOTDIR

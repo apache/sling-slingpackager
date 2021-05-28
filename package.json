@@ -1,6 +1,6 @@
 {
   "name": "@apache-sling/slingpackager",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "A tool for working with Apache Sling content packages.",
   "repository": {
     "type": "git",

@@ -21,12 +21,9 @@ set -e
 
 . tools/scripts/setupenv.sh
 
-cd $RELEASEDIR
+cd $ROOTDIR/target
 
-# Upload signed release package to ASF archive
-# TODO
-
-# Now NPM publish (dry run for now)
+# NPM publish (dry run for now)
 echo "Publishing to NPM"
 npm publish apache-sling-slingpackager-*.tgz --access public --dry-run
 

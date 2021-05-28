@@ -23,13 +23,13 @@
   <parent>
     <groupId>org.apache.sling</groupId>
     <artifactId>sling</artifactId>
-    <version>6</version>
+    <version>34</version>
   </parent>
 
   <groupId>org.apache.sling</groupId>
   <artifactId>sling-slingpackager</artifactId>
   <name>Apache Sling Slingpackager</name>
-  <version>0.0.5</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <scm>
     <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-slingpackager.git</connection>
@@ -44,6 +44,14 @@
         <groupId>org.apache.rat</groupId>
         <artifactId>apache-rat-plugin</artifactId>
         <version>0.13</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
             <excludes>
                 <exclude>**/.git/**</exclude>
@@ -60,6 +68,57 @@
                 <exclude>package.json</exclude>
             </excludes>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>sling-slingpackager-compile</id>
+            <phase>compile</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>bash</executable>
+              <commandlineArgs>./tools/scripts/compile.sh</commandlineArgs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>sling-slingpackager-test</id>
+            <phase>test</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>bash</executable>
+              <commandlineArgs>./tools/scripts/test.sh</commandlineArgs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>sling-slingpackager-package</id>
+            <phase>package</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>bash</executable>
+              <commandlineArgs>./tools/scripts/package.sh</commandlineArgs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>sling-slingpackager-deploy</id>
+            <phase>deploy</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>bash</executable>
+              <commandlineArgs>./tools/scripts/publish.sh</commandlineArgs>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

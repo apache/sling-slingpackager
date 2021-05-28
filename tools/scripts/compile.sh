@@ -17,9 +17,20 @@ set -e
 # limitations under the License.
 #
 
-export SLING_JAR="org.apache.sling.starter-11.jar"
-export SLING_DOWNLOAD="https://downloads.apache.org/sling/$SLING_JAR"
-export PACK_NAME="slingpackager"
-export SCRIPTDIR=$(cd $(dirname "$0") && pwd)
-export ROOTDIR=$(cd $SCRIPTDIR/../.. && pwd)
-export RELEASEDIR="$ROOTDIR/target/$PACK_NAME"
+. tools/scripts/setupenv.sh
+
+# Make new release directory
+if [ -d "$RELEASEDIR" ] 
+then
+    rm -rf $RELEASEDIR
+fi
+mkdir -p $RELEASEDIR
+
+echo "Copeing files to $RELEASEDIR."
+
+# Copy code to release directory
+cp -p -a $ROOTDIR/bin $RELEASEDIR
+cp -p -a $ROOTDIR/cmds $RELEASEDIR
+cp -p -a $ROOTDIR/utils $RELEASEDIR
+cp -p -a $ROOTDIR/test $RELEASEDIR
+cp package.json LICENSE NOTICE .npmignore $RELEASEDIR

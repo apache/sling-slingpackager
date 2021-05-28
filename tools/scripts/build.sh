@@ -28,32 +28,10 @@ mvn clean apache-rat:check
 
 echo "Code scan successful."
 
-# Make new release directory
-if [ -d "$RELEASEDIR" ] 
-then
-    rm -rf $RELEASEDIR
-fi
-mkdir -p $RELEASEDIR
-
-echo "Copeing release files."
-
-# Copy code to release directory
-cp -p -a $ROOTDIR/bin $RELEASEDIR
-cp -p -a $ROOTDIR/cmds $RELEASEDIR
-cp -p -a $ROOTDIR/utils $RELEASEDIR
-cp -p -a $ROOTDIR/test $RELEASEDIR
-cp package.json LICENSE NOTICE .npmignore $RELEASEDIR
+. $SCRIPTDIR/compile.sh
 
 # Run tests
 . $SCRIPTDIR/test.sh
 
-cd $RELEASEDIR
-
 # Create release package
-npm pack
-
-# For integration with current Sling Release Management which uses Maven
-# copy generated arifect to target folder
-cp $RELEASEDIR/*.tgz $ROOTDIR/target
-
-cd $ROOTDIR
+. $SCRIPTDIR/package.sh
