@@ -22,7 +22,7 @@ set -e
 . $SCRIPTDIR/build.sh
 
 # Sign release
-# . $SCRIPTDIR/sign.sh
+. $SCRIPTDIR/sign.sh
 
 # Publish release
 . $SCRIPTDIR/publish.sh
