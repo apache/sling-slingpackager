@@ -1,5 +1,15 @@
 github:
-  description: A tool for working with Apache Sling content packages
+  description: "A tool for working with Apache Sling content packages"
   labels:
-    - sling
-    - javascript
+  - "sling"
+  - "javascript"
+  autolink_jira:
+  - "SLING"
+  - "OAK"
+  - "JCR"
+  - "JCRVLT"
+  - "INFRA"
+  - "FELIX"
+  - "MNG"
+notifications:
+  jira_options: "link"
